@@ -85,6 +85,7 @@ extern NSString *const PHFComposeBarViewFrameEndUserInfoKey;          // NSValue
 @optional
 - (void)composeBarViewDidPressButton:(PHFComposeBarView *)composeBarView;
 - (void)composeBarViewDidPressUtilityButton:(PHFComposeBarView *)composeBarView;
+- (void)composeBarViewShouldBeginEditing:(PHFComposeBarView *)composeBarView;
 - (void)composeBarView:(PHFComposeBarView *)composeBarView
    willChangeFromFrame:(CGRect)startFrame
                toFrame:(CGRect)endFrame

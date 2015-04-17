@@ -78,7 +78,6 @@ static CGFloat kTextViewToSuperviewHeightDelta;
 - (void)awakeFromNib
 {
   [super awakeFromNib];
-
   [self calculateRuntimeConstants];
   [self setup];
 }
@@ -129,6 +128,11 @@ static CGFloat kTextViewToSuperviewHeightDelta;
 
 - (void)textViewDidChange:(UITextView *)textView {
     [self handleTextViewChangeAnimated:NO];
+}
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+    [self textViewShouldBeginEditing];
+    return YES;
 }
 
 #pragma mark - Public Properties
@@ -449,6 +453,11 @@ static CGFloat kTextViewToSuperviewHeightDelta;
 - (void)didPressUtilityButton {
     if ([[self delegate] respondsToSelector:@selector(composeBarViewDidPressUtilityButton:)])
         [[self delegate] composeBarViewDidPressUtilityButton:self];
+}
+
+- (void)textViewShouldBeginEditing {
+  if ([[self delegate] respondsToSelector:@selector(composeBarViewShouldBeginEditing:)])
+    [[self delegate] composeBarViewShouldBeginEditing:self];
 }
 
 - (void)updatePlaceholderVisibility {
