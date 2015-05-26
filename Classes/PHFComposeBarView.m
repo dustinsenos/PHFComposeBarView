@@ -7,9 +7,9 @@
 
 CGFloat const PHFComposeBarViewInitialHeight = 44.0f;
 
-
-NSString *const PHFComposeBarViewDidChangeFrameNotification  = @"PHFComposeBarViewDidChangeFrame";
-NSString *const PHFComposeBarViewWillChangeFrameNotification = @"PHFComposeBarViewWillChangeFrame";
+NSString *const PHFComposeBarTextViewTapRecognizedNotification  = @"PHFComposeBarTextViewTapRecognized";
+NSString *const PHFComposeBarViewDidChangeFrameNotification     = @"PHFComposeBarViewDidChangeFrame";
+NSString *const PHFComposeBarViewWillChangeFrameNotification    = @"PHFComposeBarViewWillChangeFrame";
 
 NSString *const PHFComposeBarViewFrameBeginUserInfoKey        = @"PHFComposeBarViewFrameBegin";
 NSString *const PHFComposeBarViewFrameEndUserInfoKey          = @"PHFComposeBarViewFrameEnd";
@@ -623,6 +623,18 @@ static CGFloat kTextViewToSuperviewHeightDelta;
     [self addSubview:[self textContainer]];
 
     [self resizeButton];
+}
+
+- (void)setupTapRecognizer {
+  UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapRecognized:)];
+  [self.textView addGestureRecognizer:gr];
+}
+
+- (void)singleTapRecognized:(UIGestureRecognizer *)gestureRecognizer {
+  [[NSNotificationCenter defaultCenter] postNotificationName:PHFComposeBarTextViewTapRecognizedNotification
+                                                      object:self
+                                                    userInfo:nil];
+  [self becomeFirstResponder];
 }
 
 - (void)setupDelegateChainForTextView {

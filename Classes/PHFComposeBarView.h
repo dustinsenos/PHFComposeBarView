@@ -13,6 +13,8 @@ extern CGFloat const PHFComposeBarViewInitialHeight;
 extern NSString *const PHFComposeBarViewDidChangeFrameNotification;
 extern NSString *const PHFComposeBarViewWillChangeFrameNotification;
 
+extern NSString *const PHFComposeBarTextViewTapRecognizedNotification;
+
 extern NSString *const PHFComposeBarViewAnimationDurationUserInfoKey; // NSNumber of double
 extern NSString *const PHFComposeBarViewAnimationCurveUserInfoKey;    // NSNumber of NSUInteger (UIViewAnimationCurve)
 extern NSString *const PHFComposeBarViewFrameBeginUserInfoKey;        // NSValue of CGRect
