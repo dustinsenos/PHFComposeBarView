@@ -58,6 +58,7 @@ static CGFloat kTextViewToSuperviewHeightDelta;
 @property (strong, nonatomic, readonly) UILabel *charCountLabel;
 @property (strong, nonatomic) PHFDelegateChain *delegateChain;
 @property (strong, nonatomic, readonly) UIButton *textContainer;
+@property (strong, nonatomic) UIGestureRecognizer *tapGestureRecognizer;
 @property (assign, nonatomic) CGFloat previousTextHeight;
 @end
 
@@ -628,8 +629,10 @@ static CGFloat kTextViewToSuperviewHeightDelta;
 }
 
 - (void)setupTapRecognizer {
-  UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapRecognized:)];
-  [self.textView addGestureRecognizer:gr];
+  if (self.tapGestureRecognizer == nil) {
+    self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapRecognized:)];
+    [self.textView addGestureRecognizer:self.tapGestureRecognizer];
+  }
 }
 
 - (void)singleTapRecognized:(UIGestureRecognizer *)gestureRecognizer {
