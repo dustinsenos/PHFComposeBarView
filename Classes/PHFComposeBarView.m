@@ -621,6 +621,8 @@ static CGFloat kTextViewToSuperviewHeightDelta;
     [self addSubview:[self charCountLabel]];
     [self addSubview:[self button]];
     [self addSubview:[self textContainer]];
+  
+    [self setupTapRecognizer];
 
     [self resizeButton];
 }
